@@ -1,0 +1,45 @@
+<h2 class="comments-title">
+    printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'twentyfifteen' ),
+    number_format_i18n( get_comments_number() ), get_the_title() );
+</h2>
+
+wp_list_comments() is located in wp-includes/comment-template.php
+https://core.trac.wordpress.org/browser/tags/4.1.1/src/wp-includes/comment-template.php#L2009
+
+ wp_list_comments args:
+
+    twentyten: wp_list_comments( array( 'callback' => 'twentyten_comment' )); $avatar_size = 40;
+    twentyeleven: wp_list_comments( array( 'callback' => 'twentyeleven_comment' )); // $avatar_size = 68;
+    twentytwelve: wp_list_comments( array( 'callback' => 'twentytwelve_comment', 'style' => 'ol' )); $avatar_size = 44; ?
+    twentythirteen: wp_list_comments( array( 'style' => 'ol', 'short_ping' => true, 'avatar_size' => 74 ));
+    twentyfourteen: wp_list_comments( array( 'style' => 'ol', 'short_ping' => true, 'avatar_size'=> 34 ));
+    twentyfifteen: wp_list_comments( array('style' => 'ol', 'short_ping' => true, 'avatar_size' => 56 ));
+
+    TODO: avatar_size
+
+
+\wp-content\themes\%theme%\comments.php
+
+'comment_list_el' => '#comments',
+'comment_el' => 'li#comment-',
+'list_container_class' => 'comment-list',
+'children_class' => 'children',
+
+        <... id="#comments>
+            <... class='comment-list'>
+	        ...
+                wp_list_comments( array( 'callback' => 'twentyten_comment' ) );
+            </...>
+        </...>
+
+list comments callback
+\wp-content\themes\%theme%\functions.php::twentyten_comment()
+<li id="comment-xxxxx">
+    ...
+    <ol class="children">
+	<li id="comment-xxxxy">
+	...
+	</li>
+    </ol>
+</li>
+
